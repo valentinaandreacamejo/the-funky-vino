@@ -81,3 +81,38 @@
   text-transform: uppercase;
   opacity: 0.75;
 }
+
+.footer__credit {
+  padding-bottom: var(--space-lg);
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--color-cream) 50%, transparent);
+
+  a {
+    color: color-mix(in srgb, var(--color-cream) 75%, transparent);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+    transition:
+      color var(--duration-fast) ease,
+      text-decoration-color var(--duration-fast) ease;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-rose);
+      text-decoration-color: currentColor;
+    }
+  }
+}
+
+.footer__credit-arrow {
+  display: inline-block;
+  transition: transform var(--duration-base) var(--ease-bounce);
+
+  a:hover &,
+  a:focus-visible & {
+    transform: translate(2px, -2px);
+  }
+}
