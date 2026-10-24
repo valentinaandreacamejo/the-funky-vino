@@ -1,0 +1,158 @@
+@use 'mixins' as *;
+
+:host {
+  display: block;
+  background: var(--color-dark);
+  color: var(--color-cream);
+}
+
+.menu__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-xs) var(--space-lg);
+  margin-bottom: var(--space-2xl);
+}
+
+.menu__title {
+  color: var(--color-cream);
+}
+
+.menu__note {
+  font-size: 1.6rem;
+  color: var(--color-rose);
+  transform: rotate(-2deg);
+}
+
+.menu__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  align-items: start;
+  gap: var(--space-xl);
+  padding: 0;
+  list-style: none;
+}
+
+.menu__cell {
+  rotate: -1deg;
+
+  &:nth-child(even) {
+    rotate: 1deg;
+  }
+
+  @include mq(lg) {
+    &:nth-child(2) {
+      margin-top: var(--space-xl);
+    }
+  }
+}
+
+// ---------- Card stile scontrino ----------
+.menu-card {
+  @include zigzag-edges(10px);
+
+  padding: 2.25rem 1.75rem;
+  background: var(--color-cream);
+  color: var(--color-dark);
+  transition:
+    background-color var(--duration-base) ease,
+    transform var(--duration-base) var(--ease-bounce);
+
+  &:hover,
+  &:focus-within {
+    background: var(--color-rose);
+    transform: translateY(-10px);
+  }
+}
+
+.menu-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: var(--space-md);
+  border-bottom: 2px dashed var(--color-dark);
+}
+
+.menu-card__icon {
+  display: grid;
+  place-items: center;
+  width: 5rem;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 2px solid var(--color-dark);
+  border-radius: 50%;
+  background: var(--color-cream);
+  transform: rotate(-8deg);
+  transition: transform var(--duration-base) var(--ease-bounce);
+
+  img {
+    width: 92%;
+    height: auto;
+  }
+
+  .menu-card:hover & {
+    transform: rotate(8deg) scale(1.06);
+  }
+}
+
+.menu-card__number {
+  font-family: var(--font-serif);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.12em;
+}
+
+.menu-card__title {
+  @include serif-label;
+
+  margin-top: var(--space-md);
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+}
+
+.menu-card__desc {
+  margin-top: var(--space-xs);
+  font-size: var(--fs-sm);
+}
+
+.menu-card__items {
+  display: grid;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding: 0;
+  list-style: none;
+}
+
+.menu-card__item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+  font-size: var(--fs-sm);
+
+  small {
+    opacity: 0.7;
+  }
+
+  .price {
+    font-size: var(--fs-base);
+    white-space: nowrap;
+  }
+}
+
+.menu-card__leader {
+  flex: 1;
+  min-width: 1rem;
+  border-bottom: 2px dotted currentColor;
+  opacity: 0.45;
+}
+
+.menu-card__footer {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 2px dashed var(--color-dark);
+  font-family: var(--font-serif);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-transform: uppercase;
+}

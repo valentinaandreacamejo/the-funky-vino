@@ -1,0 +1,44 @@
+<footer class="footer" id="find-us">
+  <div class="footer__inner container">
+    <div class="footer__brand">
+      <p class="footer__logo">The Funky Vino</p>
+      <p class="footer__tagline font-hand">natural wine · small plates · good people</p>
+    </div>
+
+    <div>
+      <h4 class="footer__heading">Find us</h4>
+      <address class="footer__address">
+        Via del Vino 14<br />
+        20121 Milano (MI)
+      </address>
+    </div>
+
+    <div>
+      <h4 class="footer__heading">Opening hours</h4>
+      <dl class="footer__hours">
+        @for (slot of hours; track slot.days) {
+          <div>
+            <dt>{{ slot.days }}</dt>
+            <dd class="price">{{ slot.hours }}</dd>
+          </div>
+        }
+      </dl>
+    </div>
+
+    <div>
+      <h4 class="footer__heading">Follow the funk</h4>
+      <ul class="footer__social">
+        @for (social of socials; track social.label) {
+          <li>
+            <a [href]="social.href" target="_blank" rel="noopener noreferrer">{{ social.label }} ↗</a>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer__bottom container">
+    <p>© 2026 The Funky Vino. All rights reserved.</p>
+    <p>Drink natural, drink responsibly.</p>
+  </div>
+</footer>

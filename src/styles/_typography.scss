@@ -1,0 +1,59 @@
+@use 'mixins' as *;
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+h1,
+h2,
+h3 {
+  @include display-title;
+  color: var(--color-primary);
+}
+
+h1 {
+  font-size: var(--fs-hero);
+}
+
+h2 {
+  font-size: var(--fs-2xl);
+}
+
+h3 {
+  font-size: var(--fs-xl);
+}
+
+h4,
+h5,
+h6 {
+  @include serif-label;
+  font-size: var(--fs-lg);
+}
+
+// Utility classes
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-hand {
+  font-family: var(--font-hand);
+  font-size: 1.35em;
+  line-height: 1.2;
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.price {
+  font-family: var(--font-serif);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}

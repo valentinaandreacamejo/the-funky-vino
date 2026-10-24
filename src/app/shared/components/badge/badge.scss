@@ -1,0 +1,86 @@
+@use 'mixins' as *;
+
+:host {
+  --badge-bg: var(--color-cream);
+  --badge-fg: var(--color-dark);
+
+  display: inline-block;
+  vertical-align: middle;
+}
+
+:host([data-tone='ruby']) {
+  --badge-bg: var(--color-ruby);
+  --badge-fg: var(--color-cream);
+}
+
+:host([data-tone='rose']) {
+  --badge-bg: var(--color-rose);
+  --badge-fg: var(--color-dark);
+}
+
+:host([data-tone='dark']) {
+  --badge-bg: var(--color-dark);
+  --badge-fg: var(--color-cream);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--badge-bg);
+  color: var(--badge-fg);
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+// ---------- Tag ----------
+:host([data-variant='tag']) .badge {
+  padding: 0.35em 0.55em;
+  border: 1.5px dashed currentColor;
+  border-radius: 3px;
+  font-variant-numeric: tabular-nums;
+}
+
+// ---------- Stamp ----------
+:host([data-variant='stamp']) {
+  filter: drop-shadow(3px 3px 0 var(--color-dark));
+}
+
+:host([data-variant='stamp']) .badge {
+  @include stamp-perforation(4px);
+
+  padding: 1rem 1.25rem;
+  outline: 1.5px dashed currentColor;
+  outline-offset: -10px;
+}
+
+// ---------- Seal ----------
+:host([data-variant='seal']) {
+  filter: drop-shadow(4px 4px 0 var(--color-dark));
+}
+
+:host([data-variant='seal']) .badge {
+  @include serrated-seal(26, 5%);
+
+  position: relative;
+  width: var(--seal-size, 8.5rem);
+  aspect-ratio: 1;
+  padding: 1.6rem;
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+  white-space: normal;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 13%;
+    border: 1.5px dashed currentColor;
+    border-radius: 50%;
+  }
+}

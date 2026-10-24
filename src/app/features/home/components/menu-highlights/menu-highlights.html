@@ -1,0 +1,43 @@
+<section class="menu section" id="wines" aria-labelledby="menu-title">
+  <div class="container">
+    <header class="menu__head">
+      <h2 id="menu-title" class="menu__title">On the menu</h2>
+      <p class="menu__note font-hand">changes every week, depending on the vibes ↓</p>
+    </header>
+
+    <ul class="menu__grid">
+      @for (category of categories; track category.id; let i = $index) {
+        <li class="menu__cell">
+          <article class="menu-card" [id]="category.id">
+            <div class="menu-card__top">
+              <span class="menu-card__icon">
+                <img [src]="category.icon" alt="" width="80" height="80" loading="lazy" />
+              </span>
+              <span class="menu-card__number">N° 0{{ i + 1 }}</span>
+            </div>
+
+            <h3 class="menu-card__title">[{{ category.label }}]</h3>
+            <p class="menu-card__desc">{{ category.description }}</p>
+
+            <ul class="menu-card__items">
+              @for (item of category.items; track item.name) {
+                <li class="menu-card__item">
+                  <span class="menu-card__name">
+                    {{ item.name }}
+                    @if (item.origin) {
+                      <small>· {{ item.origin }}</small>
+                    }
+                  </span>
+                  <span class="menu-card__leader" aria-hidden="true"></span>
+                  <span class="price">{{ item.price }}</span>
+                </li>
+              }
+            </ul>
+
+            <p class="menu-card__footer">✺ merci · grazie · thanks ✺</p>
+          </article>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

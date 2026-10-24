@@ -1,0 +1,36 @@
+<section class="about section" id="about" aria-labelledby="about-title">
+  <div class="about__inner container">
+    <figure class="about__photo">
+      <img
+        src="assets/images/table-setting-menu-flatlay.jpg"
+        alt="Bistro table from above: sourdough, olives, labneh, roasted carrots, orange and red wine and a 'Petite Table' menu"
+        width="1024"
+        height="1024"
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption class="about__caption">table n°7, around 21:30</figcaption>
+    </figure>
+
+    <article class="about__letter">
+      <span class="about__sticker" aria-hidden="true">
+        <img src="assets/icons/piatto-posate-doodle.svg" alt="" width="96" height="96" loading="lazy" />
+      </span>
+
+      <p class="about__eyebrow">Our story · Notre histoire</p>
+      <h2 id="about-title" class="about__title">Petite Table, Grands Moments</h2>
+      <p class="about__text">
+        We source low-intervention wines directly from small independent vineyards across Europe.
+        No rules, just good taste.
+      </p>
+
+      <ul class="about__values">
+        @for (value of values; track value) {
+          <li><app-badge variant="tag" tone="cream">✓ {{ value }}</app-badge></li>
+        }
+      </ul>
+
+      <p class="about__signature font-hand">— with love, the Funky Vino crew</p>
+    </article>
+  </div>
+</section>

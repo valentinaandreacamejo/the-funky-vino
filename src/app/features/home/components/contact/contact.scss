@@ -1,0 +1,123 @@
+@use 'mixins' as *;
+
+:host {
+  display: block;
+}
+
+.contact__card {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  gap: var(--space-2xl);
+  padding: clamp(2rem, 1rem + 5vw, 5rem);
+  border: 2px solid var(--color-dark);
+  border-radius: var(--radius-lg);
+  background: var(--color-ruby);
+  color: var(--color-cream);
+  box-shadow: 12px 12px 0 var(--color-dark);
+
+  @include mq(md) {
+    grid-template-columns: 1fr auto;
+  }
+}
+
+.contact__copy {
+  justify-self: start;
+}
+
+.contact__kicker {
+  display: inline-block;
+  font-size: 1.75rem;
+  color: var(--color-rose);
+  rotate: -2deg;
+}
+
+.contact__title {
+  margin-top: var(--space-xs);
+  color: var(--color-cream);
+}
+
+.contact__text {
+  max-width: 38ch;
+  margin-top: var(--space-md);
+  font-size: var(--fs-lg);
+  line-height: 1.5;
+}
+
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-lg);
+  margin-top: var(--space-lg);
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-serif);
+  font-size: var(--fs-lg);
+  letter-spacing: 0.06em;
+
+  a {
+    text-decoration-color: var(--color-rose);
+
+    &:hover {
+      color: var(--color-rose);
+    }
+  }
+}
+
+// ---------- Bottone timbro tondo ----------
+.stamp-btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(10rem, 8rem + 6vw, 13rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--color-cream);
+  color: var(--color-ruby);
+  box-shadow:
+    0 0 0 6px var(--color-ruby),
+    0 0 0 8px var(--color-cream);
+  text-decoration: none;
+  transition: transform 400ms var(--ease-bounce);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 21%;
+    border: 2px dashed currentColor;
+    border-radius: 50%;
+  }
+
+  &:hover {
+    transform: rotate(-10deg) scale(1.06);
+  }
+
+  &:focus-visible {
+    outline-color: var(--color-cream);
+    outline-offset: 12px;
+  }
+}
+
+.stamp-btn__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 800;
+  animation: stamp-spin 20s linear infinite;
+}
+
+.stamp-btn__icon {
+  width: 50%;
+  height: auto;
+  border-radius: 50%;
+}
+
+@keyframes stamp-spin {
+  to {
+    rotate: 360deg;
+  }
+}

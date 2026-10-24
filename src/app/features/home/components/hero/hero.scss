@@ -1,0 +1,124 @@
+@use 'mixins' as *;
+
+:host {
+  display: block;
+}
+
+.hero {
+  padding-block: var(--space-2xl) calc(var(--space-section) * 0.75);
+}
+
+.hero__inner {
+  display: grid;
+  align-items: center;
+  gap: var(--space-2xl);
+
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+  }
+}
+
+// ---------- Copy ----------
+.hero__kicker {
+  display: inline-block;
+  margin-bottom: var(--space-sm);
+  font-size: 1.75rem;
+  color: var(--color-ruby);
+  transform: rotate(-3deg);
+}
+
+.hero__title {
+  max-width: 13ch;
+}
+
+.hero__highlight {
+  padding-inline: 0.05em;
+  background: linear-gradient(transparent 58%, var(--color-rose) 58% 92%, transparent 92%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.hero__subtitle {
+  max-width: 30ch;
+  margin-top: var(--space-lg);
+  font-family: var(--font-serif);
+  font-size: var(--fs-lg);
+  line-height: 1.4;
+}
+
+.hero__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-lg) var(--space-xl);
+  margin-top: var(--space-xl);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.hero__seal {
+  transform: rotate(-10deg);
+  transition: transform 400ms var(--ease-bounce);
+
+  &:hover {
+    transform: rotate(8deg) scale(1.06);
+  }
+}
+
+// ---------- Visual ----------
+.hero__visual {
+  position: relative;
+  padding: 0 0 2.5rem 1.5rem;
+}
+
+.hero__card {
+  overflow: hidden;
+  border: 2px solid var(--color-dark);
+  border-radius: var(--radius-lg);
+  background: var(--color-dark);
+  box-shadow: 12px 12px 0 var(--color-dark);
+  transform: rotate(1.5deg);
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+// Sticker doodle sovrapposto all'angolo della card
+.hero__sticker {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: clamp(6rem, 5rem + 4vw, 8.5rem);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 2px solid var(--color-dark);
+  border-radius: 50%;
+  background: var(--color-cream);
+  box-shadow: var(--shadow-sticker);
+  animation: sticker-wobble 6s ease-in-out infinite;
+
+  img {
+    width: 88%;
+    height: auto;
+  }
+}
+
+@keyframes sticker-wobble {
+  0%,
+  100% {
+    transform: rotate(-12deg);
+  }
+
+  50% {
+    transform: rotate(-4deg) translateY(-4px);
+  }
+}

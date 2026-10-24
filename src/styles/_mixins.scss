@@ -1,0 +1,82 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+@use 'variables' as *;
+
+// Media query mobile-first: @include mq(md) { ... }
+@mixin mq($bp) {
+  @media (min-width: map.get($breakpoints, $bp)) {
+    @content;
+  }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-lg);
+}
+
+@mixin display-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+}
+
+@mixin serif-label {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+// Bordo perforato stile francobollo (fori semicircolari su tutti i lati)
+@mixin stamp-perforation($r: 4px) {
+  mask:
+    radial-gradient($r, #0000 98%, #000) round #{-1.5 * $r} #{-1.5 * $r} / #{3 * $r} #{3 * $r},
+    linear-gradient(#000 0 0) no-repeat 50% / calc(100% - #{3 * $r}) calc(100% - #{3 * $r});
+}
+
+// Bordi seghettati sopra e sotto, stile scontrino strappato
+@mixin zigzag-edges($size: 10px) {
+  mask:
+    conic-gradient(from 135deg at 50% 0, #000 90deg, #0000 0) top / #{$size * 2} 51% repeat-x,
+    conic-gradient(from -45deg at 50% 100%, #000 90deg, #0000 0) bottom / #{$size * 2} 51% repeat-x;
+}
+
+// Sigillo circolare dentellato (tipo tappo a corona / etichetta seghettata)
+@mixin serrated-seal($teeth: 24, $depth: 6%) {
+  $steps: $teeth * 2;
+  $points: ();
+
+  @for $i from 0 to $steps {
+    $angle: math.div(360deg, $steps) * $i;
+    $radius: 50%;
+
+    @if $i % 2 == 1 {
+      $radius: 50% - $depth;
+    }
+
+    $x: 50% + $radius * math.cos($angle);
+    $y: 50% + $radius * math.sin($angle);
+    $points: list.append(
+      $points,
+      math.div(math.round($x * 100), 100) math.div(math.round($y * 100), 100),
+      $separator: comma
+    );
+  }
+
+  clip-path: polygon($points);
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
